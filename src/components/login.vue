@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 import axios from "axios";
+
+const router = useRouter();
 const username = ref("");
 const password = ref("");
 
@@ -18,6 +21,11 @@ const login = () => {
 	};
 	axios(options).then((res) => {
 		console.log(res);
+		if (res.data === "loginOK") {
+			router.push("/");
+		} else {
+			alert("用户名或密码错误");
+		}
 	});
 };
 </script>
