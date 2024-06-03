@@ -15,9 +15,6 @@ const login = () => {
 			username: username.value,
 			password: password.value,
 		},
-		headers: {
-			"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-		},
 	};
 	axios(options).then((res) => {
 		console.log(res);
