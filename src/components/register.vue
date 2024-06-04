@@ -7,34 +7,27 @@ const router = useRouter();
 const username = ref("");
 const password = ref("");
 
-const login = async () => {
+const register = async () => {
 	const options = {
 		method: "POST",
-		url: "api/login",
+		url: "api/register",
 		data: {
 			username: username.value,
 			password: password.value,
 		},
 	};
 	const res = await axios(options);
-	console.log(res.data.token);
-	const options2 = {
-		method: "GET",
-		url: "api/index",
-		headers: { token: res.data.token + "asda" },
-	};
-	const res2 = await axios(options2);
-	console.log(res2);
+	console.log(res.data);
 };
 </script>
 
 <template>
-	<h1>Login</h1>
+	<h1>Register</h1>
 	用户名：<input type="text" v-model="username" /> 密码：<input
 		type="text"
 		v-model="password"
 	/>
-	<button @click="login">登录</button>
+	<button @click="register">注册</button>
 </template>
 
 <style scoped></style>
