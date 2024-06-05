@@ -17,14 +17,23 @@ const login = async () => {
 		},
 	};
 	const res = await axios(options);
-	console.log(res.data.token);
+	console.log(res.data);
+
 	const options2 = {
 		method: "GET",
-		url: "api/index",
-		headers: { token: res.data.token + "asda" },
+		url: `/kickout/${username.value}`,
+		headers: { token: res.data.token },
 	};
 	const res2 = await axios(options2);
 	console.log(res2);
+
+	const options3 = {
+		method: "GET",
+		url: "api/admin/api",
+		headers: { token: res.data.token },
+	};
+	const res3 = await axios(options3);
+	console.log(res3);
 };
 </script>
 
