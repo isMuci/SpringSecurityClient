@@ -2,6 +2,7 @@
 import { h, ref } from "vue";
 import { useRouter } from "vue-router";
 import axios from "axios";
+import qs from "qs";
 
 const router = useRouter();
 const username = ref("");
@@ -11,26 +12,27 @@ const login = async () => {
 	const options = {
 		method: "POST",
 		url: "api/login",
-		data: {
+		data: qs.stringify({
 			username: username.value,
 			password: password.value,
-		},
+			"remember-me": "on",
+		}),
 	};
 	const res = await axios(options);
 	console.log(res.data);
 
-	const options2 = {
-		method: "GET",
-		url: `/kickout/${username.value}`,
-		headers: { token: res.data.token },
-	};
-	const res2 = await axios(options2);
-	console.log(res2);
+	// const options2 = {
+	// 	method: "GET",
+	// 	url: `/kickout/${username.value}`,
+	// 	headers: { token: res.data.token },
+	// };
+	// const res2 = await axios(options2);
+	// console.log(res2);
 
 	const options3 = {
 		method: "GET",
 		url: "api/admin/api",
-		headers: { token: res.data.token },
+		headers: { Authorization: `Bearer ${res.data}` },
 	};
 	const res3 = await axios(options3);
 	console.log(res3);
