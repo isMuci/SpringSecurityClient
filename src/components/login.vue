@@ -15,7 +15,6 @@ const login = async () => {
 		data: qs.stringify({
 			username: username.value,
 			password: password.value,
-			"remember-me": "on",
 		}),
 	};
 	const res = await axios(options);
@@ -46,6 +45,7 @@ const login = async () => {
 		v-model="password"
 	/>
 	<button @click="login">登录</button>
+	<a href="https://gitee.com/oauth/authorize?client_id=9cecc02909cd71cc217c41fe5635755720544c385e352e698a38ff145318c169&redirect_uri=http://localhost:8080/oauth/notify&response_type=code">gitee</a>
 </template>
 
 <style scoped></style>
